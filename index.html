@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background-color: #34495e;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #3498db;
+            margin-top: 0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .status.success {
+            background-color: #27ae60;
+        }
+
+        .status.failure {
+            background-color: #e74c3c;
+        }
+
+        .status.in-progress {
+            background-color: #f39c12;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        ul li strong {
+            margin-right: 5px;
+            color: #555;
+        }
+
+        .log-entry {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.9em;
+            color: #444;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            margin-top: 30px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DevOps Central Dashboard</h1>
+        <p>Streamlining Development and Operations</p>
+    </header>
+
+    <nav>
+        <a href="#overview">Overview</a>
+        <a href="#ci-cd">CI/CD Pipelines</a>
+        <a href="#monitoring">Monitoring</a>
+        <a href="#infrastructure">Infrastructure</a>
+        <a href="#logs">Logs</a>
+    </nav>
+
+    <div class="container">
+        <section id="overview" class="section">
+            <h2>Overview</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Recent Deployments</h3>
+                    <ul>
+                        <li><strong>App v1.2:</strong> <span class="status success">Deployed</span></li>
+                        <li><strong>API v3.0:</strong> <span class="status success">Deployed</span></li>
+                        <li><strong>Frontend v2.1:</strong> <span class="status failure">Failed</span> (Auth Service)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>System Health</h3>
+                    <ul>
+                        <li><strong>Web Server:</strong> <span class="status success">Healthy</span></li>
+                        <li><strong>Database:</strong> <span class="status success">Healthy</span></li>
+                        <li><strong>Auth Service:</strong> <span class="status failure">Degraded</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Pending Tasks</h3>
+                    <ul>
+                        <li>Update production dependencies</li>
+                        <li>Review new security policies</li>
+                        <li>Optimize database queries</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="ci-cd" class="section">
+            <h2>CI/CD Pipelines</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Main Application Pipeline</h3>
+                    <p>Last Run: 2025-07-01 14:30 IST</p>
+                    <p>Status: <span class="status success">Success</span></p>
+                    <p>Stages: Build &rarr; Test &rarr; Deploy</p>
+                    <button onclick="simulatePipelineRun('Main App')">Run Pipeline</button>
+                </div>
+                <div class="card">
+                    <h3>Microservice A Pipeline</h3>
+                    <p>Last Run: 2025-06-30 10:00 IST</p>
+                    <p>Status: <span class="status failure">Failed</span></p>
+                    <p>Stages: Build &rarr; Lint &rarr; Test</p>
+                    <button onclick="simulatePipelineRun('Microservice A')">Run Pipeline</button>
+                </div>
+                <div class="card">
+                    <h3>Infrastructure as Code Pipeline</h3>
+                    <p>Last Run: 2025-06-29 08:15 IST</p>
+                    <p>Status: <span class="status success">Success</span></p>
+                    <p>Stages: Plan &rarr; Apply</p>
+                    <button onclick="simulatePipelineRun('IaC')">Run Pipeline</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="monitoring" class="section">
+            <h2>Monitoring</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Server CPU Usage</h3>
+                    <p>Avg: <strong>45%</strong> | Peak: <strong>78%</strong></p>
+                    <p>Alerts: 1 High CPU (Last 24h)</p>
+                    <img src="https://via.placeholder.com/300x150?text=CPU+Graph" alt="CPU Usage Graph" style="max-width: 100%;">
+                </div>
+                <div class="card">
+                    <h3>Database Latency</h3>
+                    <p>Avg: <strong>12ms</strong> | Peak: <strong>85ms</strong></p>
+                    <p>Alerts: 0</p>
+                    <img src="https://via.placeholder.com/300x150?text=Latency+Graph" alt="Database Latency Graph" style="max-width: 100%;">
+                </div>
+                <div class="card">
+                    <h3>Application Error Rate</h3>
+                    <p>Last Hour: <strong>0.5%</strong></p>
+                    <p>Critical Errors: <strong>5</strong></p>
+                    <img src="https://via.placeholder.com/300x150?text=Errors+Graph" alt="Error Rate Graph" style="max-width: 100%;">
+                </div>
+            </div>
+        </section>
+
+        <section id="infrastructure" class="section">
+            <h2>Infrastructure Overview</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Cloud Resources (AWS)</h3>
+                    <ul>
+                        <li><strong>EC2 Instances:</strong> 15 Running</li>
+                        <li><strong>RDS Databases:</strong> 3 Active</li>
+                        <li><strong>S3 Buckets:</strong> 12 Total</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Container Orchestration (Kubernetes)</h3>
+                    <ul>
+                        <li><strong>Clusters:</strong> 2 (Production, Staging)</li>
+                        <li><strong>Nodes:</strong> 10 (Prod), 4 (Staging)</li>
+                        <li><strong>Pods:</strong> 85 Running</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Configuration Management (Ansible)</h3>
+                    <ul>
+                        <li><strong>Playbooks:</strong> 35</li>
+                        <li><strong>Last Run:</strong> 2025-06-28</li>
+                        <li><strong>Compliance:</strong> 98%</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="logs" class="section">
+            <h2>Recent Logs</h2>
+            <div class="log-entry">
+                <p>[2025-07-02 09:35:12] INFO: Application started successfully on port 8080.</p>
+            </div>
+            <div class="log-entry">
+                <p>[2025-07-02 09:35:05] WARNING: Database connection pool nearing max capacity.</p>
+            </div>
+            <div class="log-entry">
+                <p>[2025-07-02 09:34:58] ERROR: Authentication service unreachable for user 'admin'.</p>
+            </div>
+            <div class="log-entry">
+                <p>[2025-07-02 09:34:30] INFO: User 'john.doe' logged in from 192.168.1.100.</p>
+            </div>
+            <div class="log-entry">
+                <p>[2025-07-02 09:34:15] DEBUG: Processing request for /api/data.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 DevOps Dashboard. All rights reserved.</p>
+        <p>Built with passion for automation and collaboration.</p>
+    </footer>
+
+    <script>
+        function simulatePipelineRun(pipelineName) {
+            alert(`Simulating "${pipelineName}" pipeline run. Check CI/CD logs for details (not implemented).`);
+            // In a real application, this would trigger an API call to a CI/CD server
+            // and update the status dynamically.
+        }
+    </script>
+</body>
+</html>
